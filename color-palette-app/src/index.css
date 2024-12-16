@@ -4,11 +4,64 @@
 
 @layer base {
   html {
-    font-family: Inter var, system-ui, sans-serif;
+    font-family: 'Inter Tight', system-ui, sans-serif;
   }
   
   body {
-    @apply antialiased text-gray-900 bg-gray-50;
+    @apply antialiased text-[#1B3A6B] bg-[#F5F5F5];
+  }
+
+  .logo {
+    font-family: 'Borel', cursive;
+  }
+
+  /* Styles de typographie */
+  .display-l {
+    @apply text-6xl font-bold tracking-tight;
+  }
+
+  .display-m {
+    @apply text-5xl font-bold tracking-tight;
+  }
+
+  .display-s {
+    @apply text-4xl font-bold tracking-tight;
+  }
+
+  .heading-l {
+    @apply text-3xl font-semibold;
+  }
+
+  .heading-m {
+    @apply text-2xl font-semibold;
+  }
+
+  .heading-s {
+    @apply text-xl font-semibold;
+  }
+
+  .title-l {
+    @apply text-lg font-medium;
+  }
+
+  .title-m {
+    @apply text-base font-medium;
+  }
+
+  .title-s {
+    @apply text-sm font-medium;
+  }
+
+  .body-l {
+    @apply text-lg;
+  }
+
+  .body-m {
+    @apply text-base;
+  }
+
+  .body-s {
+    @apply text-sm;
   }
 }
 

@@ -1,71 +1,54 @@
 /**
- * Service pour gérer les appels API liés aux palettes de couleurs
- * Centralise toutes les requêtes vers le backend
+ * Service pour gérer les appels API
  */
 
 // URL de base de l'API
-const API_BASE_URL = 'http://localhost:5000/api';
+const BASE_URL = 'http://localhost:5003/api';
 
-/**
- * Classe regroupant toutes les méthodes d'appel à l'API
- */
-export const api = {
-  /**
-   * Récupère toutes les palettes
-   * @returns {Promise<Array>} Liste des palettes
-   * @throws {Error} En cas d'erreur de requête
-   */
-  getPalettes: async () => {
+// Service pour les palettes
+export const paletteService = {
+  // Créer une nouvelle palette
+  createPalette: async (paletteData) => {
+    const response = await fetch(`${BASE_URL}/palettes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(paletteData),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to create palette');
+    }
+    return response.json();
+  },
+
+  // Récupérer toutes les palettes
+  getAllPalettes: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/palettes`);
-      if (!response.ok) throw new Error('Erreur lors de la récupération des palettes');
-      return await response.json();
+      const response = await fetch(`${BASE_URL}/palettes`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch palettes');
+      }
+      const data = await response.json();
+      console.log('API Response brute:', data);
+      const palettes = data.results || [];
+      console.log('Palettes formatées:', palettes);
+      return palettes;
     } catch (error) {
-      console.error('API Error:', error);
+      console.error('Error fetching palettes:', error);
       throw error;
     }
   },
 
-  /**
-   * Crée une nouvelle palette
-   * @param {Object} palette - Données de la palette
-   * @param {string[]} palette.colors - Liste des couleurs
-   * @param {string[]} palette.tags - Liste des tags
-   * @returns {Promise<Object>} Palette créée
-   * @throws {Error} En cas d'erreur de requête
-   */
-  createPalette: async (palette) => {
+  // Récupérer tous les tags
+  getAllTags: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/palettes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(palette),
-      });
-      if (!response.ok) throw new Error('Erreur lors de la création de la palette');
+      const response = await fetch(`${BASE_URL}/palettes/tags`);
+      if (!response.ok) throw new Error('Failed to fetch tags');
       return await response.json();
     } catch (error) {
-      console.error('API Error:', error);
-      throw error;
-    }
-  },
-
-  /**
-   * Recherche des palettes par tags
-   * @param {string[]} tags - Liste des tags à rechercher
-   * @returns {Promise<Array>} Liste des palettes correspondantes
-   * @throws {Error} En cas d'erreur de requête
-   */
-  searchPalettes: async (tags) => {
-    try {
-      const queryString = tags.map(tag => `tags=${encodeURIComponent(tag)}`).join('&');
-      const response = await fetch(`${API_BASE_URL}/palettes/search?${queryString}`);
-      if (!response.ok) throw new Error('Erreur lors de la recherche des palettes');
-      return await response.json();
-    } catch (error) {
-      console.error('API Error:', error);
-      throw error;
+      console.error('Error fetching tags:', error);
+      return [];
     }
   },
 };

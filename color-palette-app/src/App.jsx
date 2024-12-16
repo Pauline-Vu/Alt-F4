@@ -3,20 +3,16 @@
  * Configure le routage et la structure générale de l'application
  */
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/layout/Header';
 import Home from './pages/Home';
 import CreatePalette from './pages/CreatePalette';
+import Header from './components/layout/Header';
 
 export default function App() {
   return (
     <Router>
-      {/* Layout principal */}
-      <div className="min-h-screen bg-gray-50">
-        {/* En-tête fixe */}
+      <div className="min-h-screen bg-gray-50 flex flex-col">
         <Header />
-        
-        {/* Contenu principal */}
-        <main>
+        <main className="flex-grow">
           <Routes>
             {/* Route de la page d'accueil */}
             <Route path="/" element={<Home />} />
