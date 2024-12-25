@@ -1,128 +1,124 @@
-# Application de Palettes de Couleurs
+# 🎨 Color Palette App
 
-Une application web moderne pour créer, partager et explorer des palettes de couleurs, construite avec React, Node.js, et MongoDB.
+Une application web moderne et intuitive pour créer, gérer et partager des palettes de couleurs. Idéale pour les designers, développeurs et passionnés de couleurs.
 
-## 🎨 Fonctionnalités
+## ✨ Caractéristiques Principales
 
-- Création de palettes de couleurs (3-5 couleurs)
-- Organisation par tags
-- Recherche avancée de palettes
-- Interface utilisateur intuitive et responsive
-- Copie rapide des codes couleur
-- Design moderne avec animations fluides
+- **Création de Palettes**: Créez des palettes personnalisées de 3 à 5 couleurs
+- **Gestion Intelligente**: 
+  - Organisation par tags
+  - Sauvegarde automatique
+  - Favoris et collections
+- **Fonctionnalités Avancées**:
+  - Copie rapide des codes couleur (HEX, RGB, HSL)
+  - Suggestions de couleurs harmonieuses
+  - Exportation de palettes
+- **Interface Moderne**:
+  - Design responsive
+  - Animations fluides
+  - Mode sombre/clair
+  - Navigation intuitive
 
-## 🚀 Installation
+## 🛠️ Technologies
+
+### Frontend
+- **React 18** avec Vite
+- **TailwindCSS** pour le style
+- **React Router** pour la navigation
+- **Axios** pour les requêtes API
+
+### Backend
+- **Node.js** avec Express
+- **MongoDB** avec Mongoose
+- **JWT** pour l'authentification
+- **API RESTful**
+
+## 📦 Installation
 
 ### Prérequis
-
-- Node.js (v14 ou supérieur)
+- Node.js (v18 ou supérieur)
 - MongoDB (v4.4 ou supérieur)
 - npm ou yarn
 
-### Frontend
+### Configuration du Frontend
 
-1. Cloner le repository
-
+1. Clonez le repository
 ```bash
-git clone [votre-url-github]
+git clone https://github.com/votre-username/color-palette-app.git
 cd color-palette-app
 ```
 
-2. Installer les dépendances
-
+2. Installez les dépendances
 ```bash
 npm install
-# ou
-yarn install
 ```
 
-3. Lancer l'application en mode développement
-
+3. Lancez l'application en développement
 ```bash
 npm run dev
-# ou
-yarn dev
 ```
+L'application sera accessible sur http://localhost:5173
 
-L'application sera accessible à l'adresse : http://localhost:5173
+### Configuration du Backend
 
-### Backend
-
-1. Naviguer vers le dossier backend
-
+1. Naviguez vers le dossier serveur
 ```bash
-cd backend
+cd server
 ```
 
-2. Installer les dépendances
-
+2. Installez les dépendances
 ```bash
 npm install
-# ou
-yarn install
 ```
 
-3. Créer un fichier .env à la racine du dossier backend avec les variables suivantes :
-
+3. Créez un fichier `.env` avec les variables suivantes:
 ```env
 MONGODB_URI=mongodb://localhost:27017/color-palette
-PORT=5000
+PORT=3000
+JWT_SECRET=votre_secret_jwt
 ```
 
-4. Lancer le serveur
-
+4. Démarrez le serveur
 ```bash
 npm start
-# ou
-yarn start
 ```
 
-Le serveur sera accessible à l'adresse : http://localhost:5000
-
-## 🛠 Technologies Utilisées
-
-### Frontend
-
-- React (Vite)
-- React Router
-- Tailwind CSS
-- Axios
-
-### Backend
-
-- Node.js
-- Express
-- MongoDB avec Mongoose
-- CORS
-
-## 📝 Structure du Projet
+## 🗂️ Structure du Projet
 
 ```
 color-palette-app/
 ├── src/
-│   ├── components/
-│   │   ├── layout/
-│   │   │   └── Header.jsx
-│   │   └── palette/
-│   │       └── ColorPaletteCard.jsx
-│   ├── pages/
-│   │   ├── Home.jsx
-│   │   └── CreatePalette.jsx
-│   ├── services/
-│   │   └── api.js
-│   ├── App.jsx
-│   └── main.jsx
-├── backend/
-│   ├── models/
-│   ├── routes/
-│   └── server.js
-└── README.md
+│   ├── components/     # Composants React réutilisables
+│   ├── pages/         # Pages principales
+│   ├── hooks/         # Hooks personnalisés
+│   ├── utils/         # Fonctions utilitaires
+│   └── styles/        # Styles globaux
+├── server/
+│   ├── controllers/   # Logique métier
+│   ├── models/        # Modèles MongoDB
+│   ├── routes/        # Routes API
+│   └── middleware/    # Middleware personnalisé
+└── scripts/          # Scripts utilitaires
 ```
 
-## 🌐 API Endpoints
-
-- `GET /api/palettes` : Récupérer toutes les palettes
-- `POST /api/palettes` : Créer une nouvelle palette
-- `GET /api/palettes/search` : Rechercher des palettes par tags
-
 ## 🤝 Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à :
+1. Fork le projet
+2. Créer une branche (`git checkout -b feature/amelioration`)
+3. Commit vos changements (`git commit -m 'Ajout de fonctionnalité'`)
+4. Push sur la branche (`git push origin feature/amelioration`)
+5. Ouvrir une Pull Request
+
+## 📝 License
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## 🙋‍♂️ Support
+
+Pour toute question ou problème :
+- Ouvrez une issue sur GitHub
+- Contactez l'équipe de développement
+
+---
+Développé avec ❤️ par l'équipe Alt-F4
