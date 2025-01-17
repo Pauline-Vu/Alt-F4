@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🎨 Color Palette App
 
 Une application web moderne et intuitive pour créer, gérer et partager des palettes de couleurs. Idéale pour les designers, développeurs et passionnés de couleurs.
@@ -123,3 +124,6 @@ Pour toute question ou problème :
 ---
 Développé avec ❤️ par l'équipe Alt-F4
 
+=======
+# Pigment
+>>>>>>> 8c7f7c8 (Init de dépot)
