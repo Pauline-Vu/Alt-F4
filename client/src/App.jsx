@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import CreatePalette from './pages/CreatePalette';
 import Header from './components/layout/Header';
+import './App.css';
 
 export default function App() {
   return (
