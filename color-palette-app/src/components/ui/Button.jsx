@@ -20,7 +20,7 @@ export default function Button({
   const baseStyles = "rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
   
   const variants = {
-    primary: "bg-[#FF4E0D] text-white hover:bg-[#E64304] focus:ring-[#FF4E0D]",
+    primary: "bg-[#013EC0] text-white !text-white hover:bg-[#2C5BA6] focus:ring-[#013EC0]",
     secondary: "bg-[#1B3A6B] text-white hover:bg-[#2C5BA6] focus:ring-[#1B3A6B]",
     outline: "border-2 border-[#1B3A6B] text-[#1B3A6B] hover:bg-[#D1E8FF] focus:ring-[#1B3A6B]"
   };
