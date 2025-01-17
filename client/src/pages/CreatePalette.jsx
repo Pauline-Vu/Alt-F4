@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ColorPicker from '../components/palette/ColorPicker';
-import { paletteService } from '../services/api';
+import { paletteService } from '../../services/api';
 import Button from '../components/ui/Button';
 
 const CreatePalette = () => {

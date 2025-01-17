@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { paletteService } from '../../services/api';
+import { paletteService } from '../../../services/api';
 import Button from '../ui/Button';
 
 /**
