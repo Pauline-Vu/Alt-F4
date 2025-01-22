@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import CreatePalette from './pages/CreatePalette';
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/create" element={<CreatePalette />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );

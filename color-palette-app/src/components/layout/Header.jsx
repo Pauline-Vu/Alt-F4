@@ -12,8 +12,13 @@ export default function Header() {
         <div className="flex justify-between items-center h-14 sm:h-16">
           {/* Logo et titre */}
           <div className="flex-shrink-0 flex items-center">
+          <img
+                src='/public/logo_pigment.svg'
+                alt="Logo Pigment"
+                className="h-6 sm:h-8 mr-2" // Taille du logo
+              />
             <Link to="/" className="text-2xl font-bold text-[#013EC0] hover:text-[#2C5BA6] transition-colors logo">
-             Pigment
+            Pigment
             </Link>
           </div>
 
