@@ -66,19 +66,24 @@ L'application sera accessible sur http://localhost:5173
 cd server
 ```
 
-2. Installez les dépendances
+2. Lancer le script de la base de données 
+```bash
+node seed.js
+```
+
+3. Installez les dépendances
 ```bash
 npm install
 ```
 
-3. Créez un fichier `.env` avec les variables suivantes:
+4. Créez un fichier `.env` avec les variables suivantes:
 ```env
 MONGODB_URI=mongodb://localhost:27017/color-palette
 PORT=3000
 JWT_SECRET=votre_secret_jwt
 ```
 
-4. Démarrez le serveur
+5. Démarrez le serveur
 ```bash
 npm start
 ```
