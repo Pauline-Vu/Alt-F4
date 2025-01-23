@@ -1,7 +1,6 @@
 /**
  * Service pour gérer les appels API
  */
-
 // URL de base de l'API
 const BASE_URL = 'http://localhost:5003/api';
 
@@ -31,9 +30,7 @@ export const paletteService = {
       }
       const data = await response.json();
       console.log('API Response brute:', data);
-      const palettes = data.results || [];
-      console.log('Palettes formatées:', palettes);
-      return palettes;
+      return data.results || [];
     } catch (error) {
       console.error('Error fetching palettes:', error);
       throw error;
@@ -50,5 +47,5 @@ export const paletteService = {
       console.error('Error fetching tags:', error);
       return [];
     }
-  },
+  }
 };
