@@ -142,16 +142,16 @@ export default function Home() {
 
         {/* Section des filtres */}
         <div className="mb-8">
-          <h2 className="text-lg font-semibold mb-4">Filtrer par tags</h2>
+          <h2 className="text-lg font-semibold mb-4 text-[#013EC0]">Filtrer par tags</h2>
           <div className="flex flex-wrap gap-2">
             {allTags.map((tag, index) => (
               <button
                 key={index}
                 onClick={() => handleTagClick(tag)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300
                   ${selectedTags.includes(tag)
-                    ? 'bg-[#1B3A6B] text-white'
-                    : 'bg-white text-[#1B3A6B] border border-[#1B3A6B] hover:bg-[#1B3A6B] hover:text-white'
+                    ? 'bg-[#013EC0] text-white border border-transparent'
+                    : 'bg-white text-[#013EC0] border border-[#007AFF] hover:bg-[#1B3A6B] hover:text-white'
                   }`}
               >
                 {tag}
