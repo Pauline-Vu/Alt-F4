@@ -53,10 +53,10 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
    JWT_SECRET=votre_secret_jwt
    ```
 
-3. Initialisez la base de données :
+3. Initialisez et remplissez la base de données  :
    ```bash
    node seed.js
-   py seed_database.py
+   python scripts/seed_database.py --nombre [nombre]
    ```
 
 4. Installez les dépendances avec npm :
