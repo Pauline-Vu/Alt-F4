@@ -1,6 +1,6 @@
 # 🎨 Projet Pigment
 
-Pigment est une application web qui permet aux utilisateurs de créer, rechercher et partager leurs palettes de couleurs personnalisées. Conçue pour les designers, développeurs et créateurs de contenu, cette application vous permet de travailler avec des palettes de couleurs via une interface intuitive et riche en fonctionnalités.
+Pigment est une application web qui permet aux utilisateurs de créer, rechercher et partager leurs palettes de couleurs personnalisées. Conçue pour amateurs ou utilisateurs occasionnels, cette application vous permet de travailler avec des palettes de couleurs via une interface intuitive et riche en fonctionnalités.
 
 ## ✨ Caractéristiques Principales
 
@@ -36,6 +36,7 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
 ### Prérequis
 
 - Node.js version 18 ou supérieure
+- Python version 3 ou supérieure
 - MongoDB version 4.4 ou supérieure
 - npm ou yarn
 
@@ -55,6 +56,7 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
 3. Initialisez la base de données :
    ```bash
    node seed.js
+   py seed_database.py
    ```
 
 4. Installez les dépendances avec npm :
