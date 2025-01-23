@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { PaletteModel } from './models/palette.js';
+import { PaletteModel } from '../server/models/palette.js';
 
 const palettes = [
   {
