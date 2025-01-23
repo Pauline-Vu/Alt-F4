@@ -22,17 +22,17 @@ export const paletteService = {
   },
 
   // Récupérer toutes les palettes
-  getAllPalettes: async () => {
+  getAllPalettes: async (page = 1, limit = 12, tags = []) => {
     try {
-      const response = await fetch(`${BASE_URL}/palettes`);
+      const tagsParam = tags.length > 0 ? `&tags=${tags.join(',')}` : '';
+      const response = await fetch(`${BASE_URL}/palettes?page=${page}&limit=${limit}${tagsParam}`);
       if (!response.ok) {
-        throw new Error('Failed to fetch palettes');
+        throw new Error('Erreur lors de la récupération des palettes');
       }
       const data = await response.json();
-      console.log('API Response brute:', data);
-      return data.results || [];
+      return data;
     } catch (error) {
-      console.error('Error fetching palettes:', error);
+      console.error('Erreur:', error);
       throw error;
     }
   },
@@ -40,12 +40,15 @@ export const paletteService = {
   // Récupérer tous les tags
   getAllTags: async () => {
     try {
-      const response = await fetch(`${BASE_URL}/palettes/tags`);
-      if (!response.ok) throw new Error('Failed to fetch tags');
-      return await response.json();
+      const response = await fetch(`${BASE_URL}/tags`);
+      if (!response.ok) {
+        throw new Error('Erreur lors de la récupération des tags');
+      }
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error('Error fetching tags:', error);
-      return [];
+      console.error('Erreur:', error);
+      throw error;
     }
   }
 };

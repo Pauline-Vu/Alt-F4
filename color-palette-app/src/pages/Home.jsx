@@ -10,19 +10,28 @@ export default function Home() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [allTags, setAllTags] = useState([]);
+  
+  // États pour la pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalPalettes, setTotalPalettes] = useState(0);
+  const palettesPerPage = 12;
 
   useEffect(() => {
     fetchPalettes();
     fetchTags();
-  }, []);
+  }, [currentPage, selectedTags]); // Recharger quand la page ou les tags changent
 
   const fetchPalettes = async () => {
     try {
-      const data = await paletteService.getAllPalettes();
-      if (!Array.isArray(data)) {
-        throw new Error('Les données des palettes doivent être un tableau.');
+      setLoading(true);
+      const data = await paletteService.getAllPalettes(currentPage, palettesPerPage, selectedTags);
+      if (!data || !data.results) {
+        throw new Error('Les données des palettes sont invalides.');
       }
-      setPalettes(data);
+      setPalettes(data.results);
+      setTotalPages(data.pagination.pages);
+      setTotalPalettes(data.pagination.total);
       setLoading(false);
     } catch (err) {
       setError(err.message);
@@ -41,20 +50,77 @@ export default function Home() {
 
   const handleTagClick = (tag) => {
     setSelectedTags(prev => {
-      if (prev.includes(tag)) {
-        return prev.filter(t => t !== tag);
-      }
-      return [...prev, tag];
+      const newTags = prev.includes(tag)
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag];
+      return newTags;
     });
+    setCurrentPage(1); // Retour à la première page lors du changement de filtre
   };
 
-  const filteredPalettes = palettes.filter(palette => {
-    const matchesSearch = searchTerm === '' || 
-      palette.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesTags = selectedTags.length === 0 || 
-      selectedTags.every(tag => palette.tags.includes(tag));
-    return matchesSearch && matchesTags;
-  });
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Composant de pagination
+  const Pagination = () => {
+    const pageNumbers = [];
+    const maxVisiblePages = 5;
+    
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return (
+      <div className="flex justify-center items-center gap-2 mt-8">
+        <button
+          onClick={() => handlePageChange(1)}
+          disabled={currentPage === 1}
+          className={`px-3 py-1 rounded ${
+            currentPage === 1
+              ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+              : 'bg-[#1B3A6B] text-white hover:bg-[#2B4A7B]'
+          }`}
+        >
+          «
+        </button>
+        
+        {pageNumbers.map(number => (
+          <button
+            key={number}
+            onClick={() => handlePageChange(number)}
+            className={`px-3 py-1 rounded ${
+              currentPage === number
+                ? 'bg-[#1B3A6B] text-white'
+                : 'bg-white text-[#1B3A6B] border border-[#1B3A6B] hover:bg-[#1B3A6B] hover:text-white'
+            }`}
+          >
+            {number}
+          </button>
+        ))}
+        
+        <button
+          onClick={() => handlePageChange(totalPages)}
+          disabled={currentPage === totalPages}
+          className={`px-3 py-1 rounded ${
+            currentPage === totalPages
+              ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+              : 'bg-[#1B3A6B] text-white hover:bg-[#2B4A7B]'
+          }`}
+        >
+          »
+        </button>
+      </div>
+    );
+  };
 
   if (loading) return <div>Chargement...</div>;
   if (error) return <div>Erreur : {error}</div>;
@@ -66,7 +132,10 @@ export default function Home() {
         <div className="mb-8">
           <SearchBar 
             searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
+            onSearchChange={(term) => {
+              setSearchTerm(term);
+              setCurrentPage(1);
+            }}
             placeholder="Rechercher par tag..."
           />
         </div>
@@ -92,17 +161,25 @@ export default function Home() {
         </div>
 
         {/* Message si aucun résultat */}
-        {filteredPalettes.length === 0 && (
+        {palettes.length === 0 && (
           <div className="text-center py-8 text-gray-500">
             Aucune palette ne correspond à votre recherche
           </div>
         )}
 
         {/* Grille des palettes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPalettes.map((palette, index) => (
-            <ColorPaletteCard key={index} palette={palette} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {palettes.map((palette) => (
+            <ColorPaletteCard key={palette._id} palette={palette} />
           ))}
+        </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && <Pagination />}
+
+        {/* Information sur le nombre total de palettes */}
+        <div className="text-center mt-4 text-gray-600">
+          Total : {totalPalettes} palettes
         </div>
       </div>
     </div>

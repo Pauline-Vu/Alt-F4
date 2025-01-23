@@ -26,14 +26,14 @@ const paginatedResults = (model) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 12;
     const skipIndex = (page - 1) * limit;
+    const tags = req.query.tags ? req.query.tags.split(',') : [];
 
     try {
       const query = {};
       
       // Filtre par tags si spécifié
-      if (req.query.tags) {
-        const tags = req.query.tags.split(',').map(tag => tag.trim());
-        query.tags = { $in: tags };
+      if (tags.length > 0) {
+        query.tags = { $all: tags }; // Utilise $all pour correspondre à tous les tags
       }
 
       const total = await model.countDocuments(query);
@@ -62,6 +62,17 @@ const paginatedResults = (model) => {
 // Routes
 app.get('/api/palettes', paginatedResults(PaletteModel), (req, res) => {
   res.json(res.paginatedResults);
+});
+
+// Route pour récupérer tous les tags uniques
+app.get('/api/tags', async (req, res) => {
+  try {
+    const tags = await PaletteModel.distinct('tags');
+    res.json(tags);
+  } catch (error) {
+    console.error('Error fetching tags:', error);
+    res.status(500).json({ message: 'Error fetching tags' });
+  }
 });
 
 // Endpoint pour récupérer tous les tags uniques
