@@ -27,13 +27,30 @@ const paginatedResults = (model) => {
     const limit = parseInt(req.query.limit) || 12;
     const skipIndex = (page - 1) * limit;
     const tags = req.query.tags ? req.query.tags.split(',') : [];
+    const search = req.query.search ? req.query.search.toLowerCase() : '';
 
     try {
       const query = {};
       
-      // Filtre par tags si spécifié
-      if (tags.length > 0) {
-        query.tags = { $all: tags }; // Utilise $all pour correspondre à tous les tags
+      // Combiner la recherche et les tags
+      if (search || tags.length > 0) {
+        // Créer un tableau de conditions
+        const conditions = [];
+        
+        // Condition pour les tags sélectionnés
+        if (tags.length > 0) {
+          conditions.push({ tags: { $all: tags } });
+        }
+        
+        // Condition pour la recherche
+        if (search) {
+          conditions.push({
+            tags: { $elemMatch: { $regex: search, $options: 'i' } }
+          });
+        }
+        
+        // Combiner les conditions avec $and
+        query.$and = conditions;
       }
 
       const total = await model.countDocuments(query);

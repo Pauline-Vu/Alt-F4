@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { paletteService } from '../../services/api';
 import Button from '../ui/Button';
 
@@ -12,7 +12,9 @@ import Button from '../ui/Button';
 export default function SearchBar({ searchTerm, onSearchChange, placeholder = "Rechercher..." }) {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [inputValue, setInputValue] = useState(searchTerm);
 
+  // Charger les tags au montage du composant
   useEffect(() => {
     const loadTags = async () => {
       const tags = await paletteService.getAllTags();
@@ -21,9 +23,36 @@ export default function SearchBar({ searchTerm, onSearchChange, placeholder = "R
     loadTags();
   }, []);
 
-  const filteredSuggestions = searchTerm
+  // Mettre à jour inputValue quand searchTerm change
+  useEffect(() => {
+    setInputValue(searchTerm);
+  }, [searchTerm]);
+
+  // Debounce la recherche
+  const debouncedSearch = useCallback(
+    (() => {
+      let timeoutId;
+      return (value) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          onSearchChange(value);
+        }, 300); // Attendre 300ms avant d'effectuer la recherche
+      };
+    })(),
+    [onSearchChange]
+  );
+
+  // Gérer le changement de l'input
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    debouncedSearch(value);
+  };
+
+  // Filtrer les suggestions de manière asynchrone
+  const filteredSuggestions = inputValue
     ? suggestions.filter(tag => 
-        tag && typeof tag === 'string' && tag.toLowerCase().includes(searchTerm.toLowerCase())
+        tag && typeof tag === 'string' && tag.toLowerCase().includes(inputValue.toLowerCase())
       ).slice(0, 5)
     : [];
 
@@ -32,8 +61,8 @@ export default function SearchBar({ searchTerm, onSearchChange, placeholder = "R
       <input
         type="text"
         placeholder={placeholder}
-        value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
+        value={inputValue}
+        onChange={handleInputChange}
         onFocus={() => setShowSuggestions(true)}
         onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
         className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-full 
@@ -49,18 +78,20 @@ export default function SearchBar({ searchTerm, onSearchChange, placeholder = "R
         </svg>
       </Button>
 
+      {/* Liste des suggestions */}
       {showSuggestions && filteredSuggestions.length > 0 && (
-        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
-          {filteredSuggestions.map((tag) => (
+        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
+          {filteredSuggestions.map((suggestion, index) => (
             <button
-              key={tag}
-              className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 focus:outline-none"
+              key={index}
+              className="w-full px-4 py-2 text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100 first:rounded-t-lg last:rounded-b-lg"
               onClick={() => {
-                onSearchChange(tag);
+                setInputValue(suggestion);
+                onSearchChange(suggestion);
                 setShowSuggestions(false);
               }}
             >
-              {tag}
+              {suggestion}
             </button>
           ))}
         </div>

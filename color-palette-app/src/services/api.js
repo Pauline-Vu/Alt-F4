@@ -22,10 +22,11 @@ export const paletteService = {
   },
 
   // Récupérer toutes les palettes
-  getAllPalettes: async (page = 1, limit = 12, tags = []) => {
+  getAllPalettes: async (page = 1, limit = 12, tags = [], search = '') => {
     try {
       const tagsParam = tags.length > 0 ? `&tags=${tags.join(',')}` : '';
-      const response = await fetch(`${BASE_URL}/palettes?page=${page}&limit=${limit}${tagsParam}`);
+      const searchParam = search ? `&search=${encodeURIComponent(search)}` : '';
+      const response = await fetch(`${BASE_URL}/palettes?page=${page}&limit=${limit}${tagsParam}${searchParam}`);
       if (!response.ok) {
         throw new Error('Erreur lors de la récupération des palettes');
       }
