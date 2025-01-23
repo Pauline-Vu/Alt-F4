@@ -97,7 +97,7 @@ const CreatePalette = () => {
   return (
     <div className="pt-20 pb-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-[#1B3A6B] mb-8">Créer une nouvelle palette</h1>
+        <h1 className="text-3xl font-bold text-[#013EC0] mb-8">Créer une nouvelle palette</h1>
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Section des couleurs */}
@@ -118,7 +118,7 @@ const CreatePalette = () => {
               <Button
                 type="button"
                 onClick={handleAddColor}
-                variant="outline"
+                variant="primary"
                 className="mt-4"
               >
                 Ajouter une couleur
@@ -132,15 +132,15 @@ const CreatePalette = () => {
             
             <div className="relative flex gap-2">
               <div className="flex-1 relative">
-                <input
-                  type="text"
-                  value={tagInput}
-                  onChange={handleTagInputChange}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Ajouter un tag..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A6B] focus:border-transparent"
-                />
-                
+              <input
+                type="text"
+                value={tagInput}
+                onChange={handleTagInputChange}
+                onKeyPress={handleKeyPress}
+                placeholder="Ajouter un tag..."
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B3A6B] focus:border-transparent bg-white"
+              />
+              
                 {/* Suggestions de tags */}
                 {suggestedTags.length > 0 && (
                   <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
@@ -162,7 +162,7 @@ const CreatePalette = () => {
                 type="button"
                 onClick={() => handleAddTag()}
                 disabled={!tagInput.trim()}
-                variant="outline"
+                variant="primary"
                 className="shrink-0"
               >
                 Ajouter
