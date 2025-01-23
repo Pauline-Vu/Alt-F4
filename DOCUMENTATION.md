@@ -1,4 +1,4 @@
-# Documentation Color Palette App
+# Documentation Projet Pigment
 
 Cette documentation détaille le fonctionnement de l'application Color Palette, ses composants, ses pages et son API.
 
@@ -14,17 +14,6 @@ Cette documentation détaille le fonctionnement de l'application Color Palette, 
 L'application est divisée en deux parties principales :
 - Frontend (React + Vite)
 - Backend (Node.js + Express + MongoDB)
-
-### Architecture des dossiers
-```
-color-palette-app/
-├── src/
-│   ├── components/     # Composants réutilisables
-│   ├── pages/         # Pages de l'application
-│   ├── services/      # Services (API calls)
-│   └── utils/         # Utilitaires
-└── server/           # Backend
-```
 
 ## Pages
 
@@ -660,20 +649,3 @@ Le middleware `paginatedResults` gère :
 2. Utilisez les tags pour retrouver facilement des palettes similaires
 3. Créez vos propres collections en vous inspirant des palettes existantes
 
-## Démarrage du projet
-
-### Frontend
-```bash
-cd color-palette-app
-npm install
-npm run dev
-```
-
-### Backend
-```bash
-cd color-palette-app/server
-npm install
-npm run dev
-```
-
-Le frontend sera accessible sur `http://localhost:5173` et l'API sur `http://localhost:3000`.

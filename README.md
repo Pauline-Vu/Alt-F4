@@ -1,129 +1,94 @@
-# 🎨 Color Palette App
+# 🎨 Projet Pigment
 
-Une application web moderne et intuitive pour créer, gérer et partager des palettes de couleurs. Idéale pour les designers, développeurs et passionnés de couleurs.
+Pigment est une application web qui permet aux utilisateurs de créer, rechercher et partager leurs palettes de couleurs personnalisées. Conçue pour les designers, développeurs et créateurs de contenu, cette application vous permet de travailler avec des palettes de couleurs via une interface intuitive et riche en fonctionnalités.
 
 ## ✨ Caractéristiques Principales
 
-- **Création de Palettes**: Créez des palettes personnalisées de 3 à 5 couleurs
-- **Gestion Intelligente**: 
-  - Organisation par tags
-  - Sauvegarde automatique
-  - Favoris et collections
+- **Création de Palettes**: Créez des palettes personnalisées avec jusqu'à 5 couleurs.
+- **Gestion de Tags**: Organisez vos palettes avec des tags personnalisés.
 - **Fonctionnalités Avancées**:
-  - Copie rapide des codes couleur (HEX, RGB, HSL)
-  - Suggestions de couleurs harmonieuses
-  - Exportation de palettes
+  - Sauvegarde automatique et gestion des favoris.
+  - Suggestions de palettes harmonieuses.
+  - Copie rapide des codes couleur (HEX, RGB, HSL).
 - **Interface Moderne**:
-  - Design responsive
-  - Animations fluides
-  - Mode sombre/clair
-  - Navigation intuitive
+  - Design responsive et accessible.
+  - Mode sombre et clair.
+  - Animations et transitions fluides.
 
-## 🛠️ Technologies
+## 🛠️ Technologies Utilisées
 
 ### Frontend
-- **React 18** avec Vite
-- **TailwindCSS** pour le style
-- **React Router** pour la navigation
-- **Axios** pour les requêtes API
+
+- **React 18** avec Vite (pour une gestion rapide du développement frontend)
+- **TailwindCSS** pour un style moderne et responsive
+- **React Router** pour la gestion de la navigation
+- **Axios** pour la gestion des appels API
 
 ### Backend
+
 - **Node.js** avec Express
 - **MongoDB** avec Mongoose
-- **JWT** pour l'authentification
+- **JWT** pour l'authentification sécurisée
 - **API RESTful**
 
 ## 📦 Installation
 
 ### Prérequis
-- Node.js (v18 ou supérieur)
-- MongoDB (v4.4 ou supérieur)
+
+- Node.js version 18 ou supérieure
+- MongoDB version 4.4 ou supérieure
 - npm ou yarn
 
-### Configuration du Frontend
+### Configuration du projet
 
-1. Clonez le repository
-```bash
-git clone https://github.com/votre-username/color-palette-app.git
-cd color-palette-app
-```
+1. Clonez le repository :
+   ```bash
+   git clone https://github.com/Pauline-Vu/Alt-F4.git
+   ```
+2. Créez un fichier `.env` et configurez les variables nécessaires :
+   ```env
+   MONGODB_URI=mongodb://localhost:27017/color-palette
+   PORT=3000
+   JWT_SECRET=votre_secret_jwt
+   ```
 
-2. Installez les dépendances
-```bash
-npm install
-```
+3. Initialisez la base de données :
+   ```bash
+   node seed.js
+   ```
 
-3. Lancez l'application en développement
-```bash
-npm run dev
-```
-L'application sera accessible sur http://localhost:5173
+4. Installez les dépendances avec npm :
+   ```bash
+   npm install
+   ```
 
-### Configuration du Backend
-
-1. Naviguez vers le dossier serveur
-```bash
-cd server
-```
-
-2. Lancer le script de la base de données 
-```bash
-node seed.js
-```
-
-3. Installez les dépendances
-```bash
-npm install
-```
-
-4. Créez un fichier `.env` avec les variables suivantes:
-```env
-MONGODB_URI=mongodb://localhost:27017/color-palette
-PORT=3000
-JWT_SECRET=votre_secret_jwt
-```
-
-5. Démarrez le serveur
-```bash
-npm start
-```
+5. Démarrez l'application en développement :
+   ```bash
+   npm run dev
+   ```
+   L'application sera accessible sur [http://localhost:5173](http://localhost:5173).
 
 ## 🗂️ Structure du Projet
 
 ```
-color-palette-app/
 ├── src/
-│   ├── components/     # Composants React réutilisables
-│   ├── pages/         # Pages principales
-│   ├── hooks/         # Hooks personnalisés
-│   ├── utils/         # Fonctions utilitaires
-│   └── styles/        # Styles globaux
+│   ├── components/        # Composants React réutilisables
+│   ├── pages/             # Pages principales
+│   └── services/          # Appels API et services externes
 ├── server/
-│   ├── controllers/   # Logique métier
-│   ├── models/        # Modèles MongoDB
-│   ├── routes/        # Routes API
-│   └── middleware/    # Middleware personnalisé
-└── scripts/          # Scripts utilitaires
+│   ├── models/            # Modèles MongoDB
+└── scripts/                # Scripts utilitaires
 ```
 
-## 🤝 Contribution
+## 🌍 Fonctionnalités du Backend
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-1. Fork le projet
-2. Créer une branche (`git checkout -b feature/amelioration`)
-3. Commit vos changements (`git commit -m 'Ajout de fonctionnalité'`)
-4. Push sur la branche (`git push origin feature/amelioration`)
-5. Ouvrir une Pull Request
+L'API RESTful permet de gérer les palettes, de filtrer par tags et d'assurer une gestion des utilisateurs via JWT.
 
 ## 📝 License
 
 Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
-## 🙋‍♂️ Support
-
-Pour toute question ou problème :
-- Ouvrez une issue sur GitHub
-- Contactez l'équipe de développement
-
 ---
 Développé avec ❤️ par l'équipe Alt-F4
+
+--- 
