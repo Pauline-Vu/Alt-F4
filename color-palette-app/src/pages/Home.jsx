@@ -20,12 +20,12 @@ export default function Home() {
   useEffect(() => {
     fetchPalettes();
     fetchTags();
-  }, [currentPage, selectedTags, searchTerm]); // Recharger quand la page, les tags ou la recherche changent
+  }, [currentPage, selectedTags]); // Recharger quand la page ou les tags changent
 
   const fetchPalettes = async () => {
     try {
       setLoading(true);
-      const data = await paletteService.getAllPalettes(currentPage, palettesPerPage, selectedTags, searchTerm);
+      const data = await paletteService.getAllPalettes(currentPage, palettesPerPage, selectedTags);
       if (!data || !data.results) {
         throw new Error('Les données des palettes sont invalides.');
       }
