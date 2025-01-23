@@ -15,11 +15,11 @@ export default function Header() {
            <img
               src="/public/logo_pigment.svg"
               alt="Logo Pigment"
-              className="h-8"
+              className="h-8 w-8 object-contain"
             />
             <Link
               to="/"
-              className="text-2xl font-bold text-[#013EC0] hover:text-[#2C5BA6] transition-colors ml-2 logo leading-none"
+              className="text-2xl font-bold text-[#013EC0] hover:text-[#2C5BA6] transition-colors ml-2 logo flex items-center translate-y-[6px]"
             >
               Pigment
             </Link>
@@ -33,11 +33,21 @@ export default function Header() {
               to="/create"
               variant="primary"
               size="sm"
-              className="sm:hidden p-2 rounded-full"
+              className="sm:hidden w-10 h-10 flex items-center justify-center rounded-full"
               aria-label="Créer une palette"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m6-6H6" />
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-5 w-5" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
             </Button>
             
