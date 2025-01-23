@@ -46,17 +46,18 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
    ```bash
    git clone https://github.com/Pauline-Vu/Alt-F4.git
    ```
-2. Créez un fichier `.env` et configurez les variables nécessaires :
+   
+2. Initialisez et remplissez la base de données  :
+   ```bash
+   node scripts/seed.js
+   python scripts/seed_database.py --nombre [nombre]
+   ```
+
+3. Créez un fichier `.env` et configurez les variables nécessaires :
    ```env
    MONGODB_URI=mongodb://localhost:27017/color-palette
    PORT=3000
    JWT_SECRET=votre_secret_jwt
-   ```
-
-3. Initialisez et remplissez la base de données  :
-   ```bash
-   node seed.js
-   python scripts/seed_database.py --nombre [nombre]
    ```
 
 4. Installez les dépendances avec npm :
