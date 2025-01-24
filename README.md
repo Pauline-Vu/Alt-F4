@@ -1,19 +1,16 @@
 # 🎨 Projet Pigment
 
-Pigment est une application web qui permet aux utilisateurs de créer, rechercher et partager leurs palettes de couleurs personnalisées. Conçue pour les designers, développeurs et créateurs de contenu, cette application vous permet de travailler avec des palettes de couleurs via une interface intuitive et riche en fonctionnalités.
+Pigment est une application web qui permet aux utilisateurs de créer, rechercher et partager leurs palettes de couleurs personnalisées. Conçue pour amateurs ou utilisateurs occasionnels, cette application vous permet de travailler avec des palettes de couleurs via une interface intuitive et riche en fonctionnalités.
 
 ## ✨ Caractéristiques Principales
 
 - **Création de Palettes**: Créez des palettes personnalisées avec jusqu'à 5 couleurs.
 - **Gestion de Tags**: Organisez vos palettes avec des tags personnalisés.
 - **Fonctionnalités Avancées**:
-  - Sauvegarde automatique et gestion des favoris.
   - Suggestions de palettes harmonieuses.
   - Copie rapide des codes couleur (HEX, RGB, HSL).
-- **Interface Moderne**:
+- **Interface**:
   - Design responsive et accessible.
-  - Mode sombre et clair.
-  - Animations et transitions fluides.
 
 ## 🛠️ Technologies Utilisées
 
@@ -45,24 +42,16 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
    ```bash
    git clone https://github.com/Pauline-Vu/Alt-F4.git
    ```
-2. Créez un fichier `.env` et configurez les variables nécessaires :
-   ```env
-   MONGODB_URI=mongodb://localhost:27017/color-palette
-   PORT=3000
-   JWT_SECRET=votre_secret_jwt
-   ```
-
-3. Initialisez la base de données :
-   ```bash
-   node seed.js
-   ```
-
-4. Installez les dépendances avec npm :
+2. Installez les dépendances avec npm :
    ```bash
    npm install
    ```
-
-5. Démarrez l'application en développement :
+3. Initialisez et remplissez la base de données  :
+   ```bash
+   node scripts/seed.js
+   python scripts/seed_database.py --nombre [nombre]
+   ```
+4. Démarrez l'application en développement :
    ```bash
    npm run dev
    ```
