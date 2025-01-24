@@ -66,7 +66,8 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
 │   └── services/          # Appels API et services externes
 ├── server/
 │   ├── models/            # Modèles MongoDB
-└── scripts/                # Scripts utilitaires
+├── scripts/                # Scripts utilitaires
+└── performance_analysis.ipynb # Notebook avec algorithmes de tests de performance
 ```
 
 ## 🌍 Fonctionnalités du Backend
