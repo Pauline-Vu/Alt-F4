@@ -7,13 +7,10 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
 - **Création de Palettes**: Créez des palettes personnalisées avec jusqu'à 5 couleurs.
 - **Gestion de Tags**: Organisez vos palettes avec des tags personnalisés.
 - **Fonctionnalités Avancées**:
-  - Sauvegarde automatique et gestion des favoris.
   - Suggestions de palettes harmonieuses.
   - Copie rapide des codes couleur (HEX, RGB, HSL).
-- **Interface Moderne**:
+- **Interface**:
   - Design responsive et accessible.
-  - Mode sombre et clair.
-  - Animations et transitions fluides.
 
 ## 🛠️ Technologies Utilisées
 
@@ -36,7 +33,6 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
 ### Prérequis
 
 - Node.js version 18 ou supérieure
-- Python version 3 ou supérieure
 - MongoDB version 4.4 ou supérieure
 - npm ou yarn
 
