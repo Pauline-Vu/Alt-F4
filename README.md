@@ -49,7 +49,7 @@ Pigment est une application web qui permet aux utilisateurs de créer, recherche
 3. Initialisez et remplissez la base de données  :
    ```bash
    node scripts/seed.js
-   python scripts/seed_database.py --nombre [nombre]
+   node scripts/seed_database.js --nombre [nombre]
    ```
 4. Démarrez l'application en développement :
    ```bash
